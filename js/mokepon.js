@@ -126,7 +126,7 @@ function seleccionarMascotaJugador () {
         seleccionarMascotaEnemigo();
     }else if(inputRatigueya.checked){
         spanJugadorTipo.innerHTML = ratigueya.tipo;
-        spanJugadorElemento.innerHTML = capipepo.elemento;
+        spanJugadorElemento.innerHTML = ratigueya.elemento;
         image.src = ratigueya.foto;
         document.querySelector('.foto-jugador').appendChild(image);  
         spanMascotaJugador.innerHTML= inputRatigueya.id;
