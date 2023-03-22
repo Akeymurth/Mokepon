@@ -31,7 +31,9 @@ let indexAtaqueJugador
 let indexAtaqueEnemigo
 
 class Mokepon {
-    constructor(nombre, foto, vida){
+    constructor(tipo, elemento, nombre, foto, vida){
+        this.tipo = tipo;
+        this.elemento = elemento;
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
@@ -40,9 +42,9 @@ class Mokepon {
 
 };
 
-let hipodoge = new Mokepon('Hipodoge', './Imagenes/hipodoge2.png', 5);
-let capipepo = new Mokepon('Capipepo', './Imagenes/capipepo2.png', 5);
-let ratigueya = new Mokepon('Ratigueya', './Imagenes/ratigueya2.png', 5);
+let hipodoge = new Mokepon('Agua', '💧💧💧🔥🌱', 'Hipodoge', './Imagenes/hipodoge2.png', 5);
+let capipepo = new Mokepon('Planta', '🌱🌱🌱💧🔥', 'Capipepo', './Imagenes/capipepo2.png', 5);
+let ratigueya = new Mokepon('Fuego', '🔥🔥🔥💧🌱', 'Ratigueya', './Imagenes/ratigueya2.png', 5);
 
 hipodoge.ataques.push(
     { nombre: 'Agua 💧', id: 'boton-agua'},
@@ -75,7 +77,9 @@ mokepones.forEach((mokepon) =>{
     <input type="radio" name="mascota" id=${mokepon.nombre} />
     <label class="tarjeta-de-mokepon" for=${mokepon.nombre}>
        <p>${mokepon.nombre}</p>
-       <img id="hipodoge-foto" src=${mokepon.foto} alt=${mokepon.nombre}> 
+       <img id="hipodoge-foto" src=${mokepon.foto} alt=${mokepon.nombre}>
+       <p>${mokepon.elemento}</p> 
+       <p>${mokepon.tipo}</p>
     </label>
     `
     contenedorTarjetas.innerHTML += opcionDeMokepones;
@@ -96,9 +100,13 @@ botonMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
 function seleccionarMascotaJugador () {
     
     const spanMascotaJugador = document.getElementById ('mascota-jugador');
+    const spanJugadorTipo = document.getElementById ('jugadorTipo');
+    const spanJugadorElemento = document.getElementById ('jugadorElemento');
     let image = document.createElement('img');
     
     if(inputHipodoge.checked) {
+        spanJugadorTipo.innerHTML = hipodoge.tipo;
+        spanJugadorElemento.innerHTML = hipodoge.elemento;
         image.src = hipodoge.foto;
         document.querySelector('.foto-jugador').appendChild(image);       
         spanMascotaJugador.innerHTML= inputHipodoge.id;
@@ -107,6 +115,8 @@ function seleccionarMascotaJugador () {
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
     }else if(inputCapipepo.checked){
+        spanJugadorTipo.innerHTML = capipepo.tipo;
+        spanJugadorElemento.innerHTML = capipepo.elemento;
         image.src = capipepo.foto;
         document.querySelector('.foto-jugador').appendChild(image);  
         spanMascotaJugador.innerHTML= inputCapipepo.id;
@@ -115,6 +125,8 @@ function seleccionarMascotaJugador () {
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
     }else if(inputRatigueya.checked){
+        spanJugadorTipo.innerHTML = ratigueya.tipo;
+        spanJugadorElemento.innerHTML = capipepo.elemento;
         image.src = ratigueya.foto;
         document.querySelector('.foto-jugador').appendChild(image);  
         spanMascotaJugador.innerHTML= inputRatigueya.id;
