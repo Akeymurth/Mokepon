@@ -43,8 +43,11 @@ class Mokepon {
 };
 
 let hipodoge = new Mokepon('Agua', '💧💧💧🔥🌱', 'Hipodoge', './Imagenes/hipodoge2.png', 5);
-let capipepo = new Mokepon('Planta', '🌱🌱🌱💧🔥', 'Capipepo', './Imagenes/capipepo2.png', 5);
-let ratigueya = new Mokepon('Fuego', '🔥🔥🔥💧🌱', 'Ratigueya', './Imagenes/ratigueya2.png', 5);
+let capipepo = new Mokepon('Planta', '🌱🌱🌱💧🔥', 'Capipepo', './Imagenes/capi2.png', 5);
+let ratigueya = new Mokepon('Fuego', '🔥🔥🔥💧🌱', 'Ratigueya', './Imagenes/rati2.png', 5);
+let ratimon = new Mokepon('Planta', '🌱🌱🌱💧💧', 'Ratimon', './Imagenes/ratymon2.png', 5);
+let dogodoge = new Mokepon('Fuego', '🔥🔥🔥💧💧', 'Dogodoge', './Imagenes/dogodoge.png', 5);
+let fokamon = new Mokepon('Agua', '💧💧💧🌱🌱', 'Fokamon', './Imagenes/fokamon.png', 5);
 
 hipodoge.ataques.push(
     { nombre: 'Agua 💧', id: 'boton-agua'},
@@ -70,7 +73,31 @@ ratigueya.ataques.push(
     { nombre: 'Planta 🌱', id: 'boton-tierra'},
 );
 
-mokepones.push(hipodoge, capipepo, ratigueya);
+ratimon.ataques.push(
+    { nombre: 'Planta 🌱', id: 'boton-tierra'},
+    { nombre: 'Planta 🌱', id: 'boton-tierra'},
+    { nombre: 'Planta 🌱', id: 'boton-tierra'},
+    { nombre: 'Agua 💧', id: 'boton-agua'}, 
+    { nombre: 'Agua 💧', id: 'boton-agua'}, 
+);
+
+dogodoge.ataques.push(
+    { nombre: 'Fuego 🔥', id: 'boton-fuego'},
+    { nombre: 'Fuego 🔥', id: 'boton-fuego'},
+    { nombre: 'Fuego 🔥', id: 'boton-fuego'},
+    { nombre: 'Agua 💧', id: 'boton-agua'}, 
+    { nombre: 'Agua 💧', id: 'boton-agua'}, 
+);
+
+fokamon.ataques.push(
+    { nombre: 'Agua 💧', id: 'boton-agua'},
+    { nombre: 'Agua 💧', id: 'boton-agua'},
+    { nombre: 'Agua 💧', id: 'boton-agua'},
+    { nombre: 'Planta 🌱', id: 'boton-tierra'},
+    { nombre: 'Planta 🌱', id: 'boton-tierra'},
+);
+
+mokepones.push(ratimon, dogodoge, fokamon, hipodoge, capipepo, ratigueya);
 
 mokepones.forEach((mokepon) =>{
     opcionDeMokepones = `
@@ -87,6 +114,10 @@ mokepones.forEach((mokepon) =>{
     inputHipodoge = document.getElementById ('Hipodoge');
     inputCapipepo = document.getElementById ('Capipepo');
     inputRatigueya = document.getElementById ('Ratigueya');
+    inputRatimon = document.getElementById ('Ratimon');
+    inputDogodoge = document.getElementById ('Dogodoge');
+    inputFokamon = document.getElementById ('Fokamon');
+
 });
 
 const sectionSeleccionarAtaque = document.getElementById('seleccinar-ataque');
@@ -131,6 +162,36 @@ function seleccionarMascotaJugador () {
         document.querySelector('.foto-jugador').appendChild(image);  
         spanMascotaJugador.innerHTML= inputRatigueya.id;
         mascotaJugador = inputRatigueya.id;
+        sectionSeleccionarAtaque.style.display = 'flex';
+        extraerAtaques(mascotaJugador);
+        seleccionarMascotaEnemigo();
+    }else if(inputRatimon.checked){
+        spanJugadorTipo.innerHTML = ratimon.tipo;
+        spanJugadorElemento.innerHTML = ratimon.elemento;
+        image.src = ratimon.foto;
+        document.querySelector('.foto-jugador').appendChild(image);  
+        spanMascotaJugador.innerHTML= inputRatimon.id;
+        mascotaJugador = inputRatimon.id;
+        sectionSeleccionarAtaque.style.display = 'flex';
+        extraerAtaques(mascotaJugador);
+        seleccionarMascotaEnemigo();
+    }else if(inputDogodoge.checked){
+        spanJugadorTipo.innerHTML = dogodoge.tipo;
+        spanJugadorElemento.innerHTML = dogodoge.elemento;
+        image.src = dogodoge.foto;
+        document.querySelector('.foto-jugador').appendChild(image);  
+        spanMascotaJugador.innerHTML= inputDogodoge.id;
+        mascotaJugador = inputDogodoge.id;
+        sectionSeleccionarAtaque.style.display = 'flex';
+        extraerAtaques(mascotaJugador);
+        seleccionarMascotaEnemigo();
+    }else if(inputFokamon.checked){
+        spanJugadorTipo.innerHTML = fokamon.tipo;
+        spanJugadorElemento.innerHTML = fokamon.elemento;
+        image.src = fokamon.foto;
+        document.querySelector('.foto-jugador').appendChild(image);  
+        spanMascotaJugador.innerHTML= inputFokamon.id;
+        mascotaJugador = inputFokamon.id;
         sectionSeleccionarAtaque.style.display = 'flex';
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
@@ -310,7 +371,7 @@ function crearMensaje(){
     let nuevoAtaqueDelJugador = document.createElement('p');
     let nuevoAtaqueDelEnemigo = document.createElement('p');
     
-    /* sectionMensajes.innerHTML = resultado; */
+    sectionMensajes.innerHTML = resultado;
     nuevoAtaqueDelJugador.innerHTML = indexAtaqueJugador;
     nuevoAtaqueDelEnemigo.innerHTML = indexAtaqueEnemigo;
     
@@ -320,11 +381,6 @@ function crearMensaje(){
 
 function crearMensajeFinal(resultadoFinal){
     sectionMensajes.innerHTML = resultadoFinal;
-    
-    botonFuego.disabled = true;
-    botonAgua.disabled = true;
-    botonTierra.disabled = true;
-
     sectionReiniciar.style.display = 'block';
 };
 

@@ -24,6 +24,13 @@ body {
 	font-size: 28px;
 }
 
+#contenedorTarjetas{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 20px;
+
+}
+
 .instrucciones{
 	text-align: center;
 }
@@ -187,10 +194,22 @@ input:checked + label {
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
+@media (max-width: 1060px){
+	#contenedorTarjetas{
+		grid-template-columns: 1fr 1fr;	
+	}
+}
+
 @media (max-width: 900px){
 	.botones-ataque {
 		display: flex;
 		flex-direction: column;
+	}
+}
+
+@media (max-width: 755px){
+	#contenedorTarjetas{
+		grid-template-columns: 1fr;	
 	}
 }
 
