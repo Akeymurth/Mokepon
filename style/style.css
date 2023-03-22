@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+	background-color: #00425A;
+	color: #fff;
+	font-family: 'Press Start 2P', cursive;
+	min-height: 100vh;
+}
+
+#seleccionar-mascota{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.titulo {
+	font-size: 56px;
+	color: #fff;
+	text-shadow: 2px 6px #FC7300;	/*esta etiqueta es para que se vea color detras de las letras*/
+}
+
+.subtitulo{
+	color: #1F8A70;
+	font-size: 28px;
+}
+
+.instrucciones{
+	text-align: center;
+}
+
+input {
+	display: none;
+}
+
+input:checked + label {
+	background-color: rgb(255, 60, 0);
+}
+
+.tarjetas{
+	display: flex;
+	gap: 10px;
+}
+
+.tarjeta-de-mokepon{
+	display: flex;
+	width: 305px;
+	height: 180px;
+	background: #1F8A70;
+	padding: 10px;
+	box-sizing: border-box; /*esta etiqueta incluye el padding dentro del alto y ancho*/
+	margin: 10px;
+	border-radius: 20px;
+	flex-direction: row-reverse;
+	align-items: center;
+	border: 2px solid white;
+	cursor: pointer;
+}
+
+.tarjeta-de-mokepon:hover{
+	background-color: #FC7300;
+}
+.tarjeta-de-mokepon img{
+	width: 150px;
+	height: 150px;
+}
+
+.tarjeta-de-mokepon p{
+	writing-mode: vertical-rl;
+    text-orientation: upright;
+	font-size: 15px;
+}
+
+#boton-mascota{
+	width: 250px;
+	height: 45px;
+	margin: 40px 0px 0px 0px;
+	background-color:  #1F8A70;
+	border-radius: 10px;
+	font-family: 'Press Start 2P', cursive;
+	border-color: transparent;
+	font-size: 20px;
+	cursor: pointer;
+	color: white;
+}
+
+#boton-mascota:hover{
+	background-color: #FC7300;
+}
+
+#seleccinar-ataque{
+	flex-direction: column;
+	align-items: center;
+}
+
+.botones-ataque {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.boton-de-ataque{
+	width: 150px;
+	height: 40px;
+	margin: 20px 0px 0px 0px;
+	background-color:  #1F8A70;
+	border-radius: 10px;
+	font-family: 'Press Start 2P', cursive;
+	border-color: transparent;
+	font-size: 15px;
+	cursor: pointer;
+	color: white;
+	align-items: center;
+	margin-left: 20px;
+}
+
+.boton-de-ataque:hover{
+	background-color: #FC7300;
+}
+
+#mensajes{
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	background: #FC7300;
+	padding: 10px;
+	margin-top: 20px;
+	border-radius: 20px;
+	align-items: center;
+	font-size: 15px;
+}
+
+#enfrentamiento{
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	background: #112f58;
+	padding: 10px;
+	margin-top: 20px;
+	border-radius: 20px;
+	align-items: center;
+	font-size: 15px;
+}
+
+.ataqueJugador{
+	text-align: center;
+}
+
+#mensajeResultadoJugador{
+	text-align: center;
+}
+
+#mensajeResultadoEnemigo{
+	text-align: center;
+}
+
+#boton-reiniciar{
+	width: 200px;
+	height: 45px;
+	margin: 40px 0px 0px 0px;
+	background-color:  #1F8A70;
+	border-radius: 10px;
+	font-family: 'Press Start 2P', cursive;
+	border-color: transparent;
+	font-size: 15px;
+	cursor: pointer;
+	color: white;
+}
+
+#boton-reiniciar:hover{
+	background: rgb(255, 155, 0);
+}
+
+.ataques{
+	display: grid;
+	grid-template-columns: 350px 350px;
+	grid-gap: 80px;
+	margin-top: 20px;
+	text-align: center;
+	justify-items: center;
+}
+
+.ataques-jugador{
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ataques-enemigo{
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 900px){
+	.botones-ataque {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 750px) {
+	.tarjetas{
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.tarjeta-de-mokepon{
+		width: 160px;
+		height: 120px;
+	}
+	
+
+	.tarjeta-de-mokepon img{
+		width: 100px;
+		height: 100px;
+	}
+
+	.tarjeta-de-mokepon p{
+		font-size: 10px;
+	}
+
+	.botones-ataque {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.ataques{
+		display: flex;
+		flex-direction: column;
+		justify-items: center;
+	}
+
+}
+
+@media (max-width: 711px) {
+	.titulo {
+		font-size: 40px;
+	}
+}
+	
+@media (max-width: 440px) {
+	.titulo {
+		font-size: 36px;
+	}
+	
+	.subtitulo{
+		font-size: 18px;
+	}
+
+	#boton-mascota{
+		width: 250px;
+		height: 45px;
+	}
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mokepon!</title>
+    <link rel="stylesheet" href="./style/style.css"> 
+</head>
+<body>
+    <section id="seleccionar-mascota">
+        <h1 class="titulo">Mokepon! 🔥💧🌱</h1>
+        <h2 class="subtitulo">Elige tu mascota:</h2>
+
+        <div id="contenedorTarjetas" class="tarjetas">
+
+        </div>
+        
+        <button id="boton-mascota">Seleccionar</button>
+    </section>
+
+    <section id="seleccinar-ataque">
+        <h1 class="titulo">Mokepon</h1>
+
+        <p>Instrucciones:</p>
+        <p class="instrucciones">Fuego gana a Planta, Agua a Fuego y Planta a Agua.</p>
+
+        <h2 class="subtitulo">Elige tu ataque:</h2>
+
+        <p class="instrucciones">Elige los todos los ataques para ver quien gana, una ves cambie de color el boton, ya no se podra ocupar:</p>
+
+        <div id="contenedorBotones" class="botones-ataque">
+
+        </div>
+        
+        <div id="mensajes">
+            <p id="nuevo-mensaje">Resultado:</p>
+            <section id="reiniciar">
+                <button id="boton-reiniciar">Reiniciar</button>
+            </section>
+        </div>
+
+        <div id="enfrentamiento">
+            <p class="ataqueJugador">Enfrentamiento</p> 
+            <p class="ataqueJugador">Jugador ataco con:</p>
+            <p id="mensajeResultadoJugador"></p>
+            <p class="ataquesEnemigo">Pc ataco con:</p>
+            <p id="mensajeResultadoEnemigo"></p>
+
+            <p id="mensajeEnfrentamiento"></p>
+        </div>
+
+        <div class="ataques">
+            <div class="ataques-jugador">
+                <div class="foto-jugador"></div>
+                <div>
+                    <span id="jugadorTipo"></span>
+                    <br/>
+                    <span id="jugadorElemento"></span>
+                </div>
+                <p>Player Victorias:<span id="vidas-jugador">0</span></p>
+                <p>Mascota:
+                <br/>
+                <span id="mascota-jugador"></span></p>
+                <div id="ataques-del-jugador"></div>
+            </div>
+            <div class="ataques-enemigo">
+                <div class="foto-enemigo"></div>
+                <div>
+                    <span id="enemigoTipo"></span>
+                    <br/>
+                    <span id="enemigoElemento"></span>
+                </div>
+                <p>Pc Victorias:<span id="vidas-enemigo">0</span></p>
+                <p>Mascota:
+                <br/>
+                <span id="mascota-enemigo"></span></p>
+                <div id="ataques-del-enemigo"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/mokepon.js"></script> 
+</body>
+</html>
