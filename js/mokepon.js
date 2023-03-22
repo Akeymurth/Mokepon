@@ -174,17 +174,20 @@ function secuenciaAtaque(){
                 ataqueJugador.push('Fuego 🔥');
                 console.log(ataqueJugador);
                 boton.style.background = '#112f58';
-                boton.disabled = true;                
+                boton.disabled = true;
+                sectionJugadorAtaque('Fuego 🔥');                
             }else if(e.target.textContent === 'Agua 💧'){
                 ataqueJugador.push('Agua 💧');
                 console.log(ataqueJugador);
                 boton.style.background = '#112f58';
-                boton.disabled = true;                
+                boton.disabled = true; 
+                sectionJugadorAtaque('Agua 💧');                
             }else {
                 ataqueJugador.push('Planta 🌱');
                 console.log(ataqueJugador);
                 boton.style.background = '#112f58';
                 boton.disabled = true;
+                sectionJugadorAtaque('Planta 🌱');                
             };
             ataqueMascotaEnemigo();
         });
@@ -226,10 +229,13 @@ function ataqueMascotaEnemigo(){
     
     if (ataquesPC[ataqueAletorio].nombre === 'Fuego 🔥') {
         ataqueEnemigo.push ('Fuego 🔥');
+        sectionEnemigoAtaque('Fuego 🔥')
     } else if (ataquesPC[ataqueAletorio].nombre === 'Agua 💧'){
         ataqueEnemigo.push ('Agua 💧');
+        sectionEnemigoAtaque('Agua 💧')
     } else {
-        ataqueEnemigo.push ('Planta 🌱');  
+        ataqueEnemigo.push ('Planta 🌱'); 
+        sectionEnemigoAtaque('Planta 🌱')
     };
 
     console.log(ataqueEnemigo);
@@ -282,6 +288,17 @@ function revisarVictorias(){
         crearMensajeFinal('- Perdiste la partida 😭');
     };
 };
+
+function sectionJugadorAtaque(mensajeAtaque){
+    const mensajeAtaqueJugador = document.getElementById('mensajeResultadoJugador');
+    mensajeAtaqueJugador.innerHTML = mensajeAtaque;
+};
+
+function sectionEnemigoAtaque(mensajeEnemigo){
+    const mensajeAtaqueEnemigo = document.getElementById('mensajeResultadoEnemigo');
+    mensajeAtaqueEnemigo.innerHTML = mensajeEnemigo;
+};
+
 
 const sectionMensajes = document.getElementById ('nuevo-mensaje');
 
