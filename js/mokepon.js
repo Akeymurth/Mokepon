@@ -195,9 +195,15 @@ function seleccionarMascotaEnemigo (){
     const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
     let mascotaAleatorio = aleatorio(0, mokepones.length -1);
     const spanMascotaEnemigo = document.getElementById ('mascota-enemigo');
+    spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatorio].nombre;
+    
+    const spanEnemigoTipo = document.getElementById ('enemigoTipo');
+    spanEnemigoTipo.innerHTML = mokepones[mascotaAleatorio].tipo;
+
+    const spanEnemigoElemento = document.getElementById ('enemigoElemento');
+    spanEnemigoElemento.innerHTML = mokepones[mascotaAleatorio].elemento;
     
     sectionSeleccionarMascota.style.display = 'none';
-    spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatorio].nombre;
     ataqueMokeponEnemigo = mokepones[mascotaAleatorio].ataques;
     
     let image = document.createElement('img');
