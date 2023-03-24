@@ -17,6 +17,7 @@ body {
 	font-size: 56px;
 	color: #fff;
 	text-shadow: 2px 6px #FC7300;	/*esta etiqueta es para que se vea color detras de las letras*/
+	text-align: center;
 }
 
 .subtitulo{
@@ -92,6 +93,16 @@ input:checked + label {
 
 #boton-mascota:hover{
 	background-color: #FC7300;
+}
+
+#verMapa{
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#mapa{
+	border: 2px solid white;
 }
 
 #seleccinar-ataque{

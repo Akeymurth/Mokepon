@@ -3,6 +3,9 @@
 //window.addEventListener('load', iniciarJuego);
 const contenedorTarjetas = document.getElementById('contenedorTarjetas');
 const contenedorBotones = document.getElementById('contenedorBotones');
+const sectionVerMapa = document.getElementById('verMapa');
+const mapa = document.getElementById('mapa');
+sectionVerMapa.style.display = 'none';
 
 let mokepones = [];
 let opcionDeMokepones
@@ -30,6 +33,8 @@ let botones = [];
 let indexAtaqueJugador
 let indexAtaqueEnemigo
 
+let lienzo = mapa.getContext('2d');
+
 class Mokepon {
     constructor(tipo, elemento, nombre, foto, vida){
         this.tipo = tipo;
@@ -38,6 +43,12 @@ class Mokepon {
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
+        this.x = 20;
+        this.y = 30;
+        this.ancho = 80;
+        this.alto = 80;
+        this.mapaFoto = new Image();
+        this.mapaFoto.src = foto;
     }
 
 };
@@ -134,6 +145,8 @@ function seleccionarMascotaJugador () {
     const spanJugadorTipo = document.getElementById ('jugadorTipo');
     const spanJugadorElemento = document.getElementById ('jugadorElemento');
     let image = document.createElement('img');
+    /* let imagenDeHipodoge = new Image();
+    imagenDeHipodoge.src = hipodoge.foto; */
     
     if(inputHipodoge.checked) {
         spanJugadorTipo.innerHTML = hipodoge.tipo;
@@ -142,9 +155,11 @@ function seleccionarMascotaJugador () {
         document.querySelector('.foto-jugador').appendChild(image);       
         spanMascotaJugador.innerHTML= inputHipodoge.id;
         mascotaJugador = inputHipodoge.id;
-        sectionSeleccionarAtaque.style.display = 'flex';
+        sectionVerMapa.style.display = 'flex';
+        /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
+        moverHipodoge()
     }else if(inputCapipepo.checked){
         spanJugadorTipo.innerHTML = capipepo.tipo;
         spanJugadorElemento.innerHTML = capipepo.elemento;
@@ -152,7 +167,8 @@ function seleccionarMascotaJugador () {
         document.querySelector('.foto-jugador').appendChild(image);  
         spanMascotaJugador.innerHTML= inputCapipepo.id;
         mascotaJugador = inputCapipepo.id;
-        sectionSeleccionarAtaque.style.display = 'flex';
+        sectionVerMapa.style.display = 'flex';
+        /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
     }else if(inputRatigueya.checked){
@@ -162,7 +178,8 @@ function seleccionarMascotaJugador () {
         document.querySelector('.foto-jugador').appendChild(image);  
         spanMascotaJugador.innerHTML= inputRatigueya.id;
         mascotaJugador = inputRatigueya.id;
-        sectionSeleccionarAtaque.style.display = 'flex';
+        sectionVerMapa.style.display = 'flex';
+        /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
     }else if(inputRatimon.checked){
@@ -172,7 +189,8 @@ function seleccionarMascotaJugador () {
         document.querySelector('.foto-jugador').appendChild(image);  
         spanMascotaJugador.innerHTML= inputRatimon.id;
         mascotaJugador = inputRatimon.id;
-        sectionSeleccionarAtaque.style.display = 'flex';
+        sectionVerMapa.style.display = 'flex';
+        /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
     }else if(inputDogodoge.checked){
@@ -182,7 +200,8 @@ function seleccionarMascotaJugador () {
         document.querySelector('.foto-jugador').appendChild(image);  
         spanMascotaJugador.innerHTML= inputDogodoge.id;
         mascotaJugador = inputDogodoge.id;
-        sectionSeleccionarAtaque.style.display = 'flex';
+        sectionVerMapa.style.display = 'flex';
+        /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
     }else if(inputFokamon.checked){
@@ -192,7 +211,8 @@ function seleccionarMascotaJugador () {
         document.querySelector('.foto-jugador').appendChild(image);  
         spanMascotaJugador.innerHTML= inputFokamon.id;
         mascotaJugador = inputFokamon.id;
-        sectionSeleccionarAtaque.style.display = 'flex';
+        sectionVerMapa.style.display = 'flex';
+        /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
     }else{
@@ -389,6 +409,22 @@ const botonReiniciar = document.getElementById ('boton-reiniciar');
 
 function reiniciarJuego(){
     location.reload();
+};
+
+function pintarPersonaje(){
+    lienzo.clearRect(0, 0, mapa.width, mapa.height);
+    lienzo.drawImage(
+        hipodoge.mapaFoto,
+        hipodoge.x, /* eje x en canvas */
+        hipodoge.y, /* eje y en canvas */
+        hipodoge.ancho, /* tamaño de la imagen */
+        hipodoge.alto   /* tamaño de la imagen */
+        );
+};
+
+function moverHipodoge(){
+    hipodoge.x = hipodoge.x + 5;
+    pintarPersonaje();
 };
 
 function aleatorio(min, max){
