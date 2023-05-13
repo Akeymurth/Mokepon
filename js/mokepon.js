@@ -145,9 +145,7 @@ function seleccionarMascotaJugador () {
     const spanJugadorTipo = document.getElementById ('jugadorTipo');
     const spanJugadorElemento = document.getElementById ('jugadorElemento');
     let image = document.createElement('img');
-    /* let imagenDeHipodoge = new Image();
-    imagenDeHipodoge.src = hipodoge.foto; */
-    
+        
     if(inputHipodoge.checked) {
         spanJugadorTipo.innerHTML = hipodoge.tipo;
         spanJugadorElemento.innerHTML = hipodoge.elemento;
@@ -159,7 +157,8 @@ function seleccionarMascotaJugador () {
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
-        moverHipodoge()
+        moverHipodogeDerecha();
+        moverHipodogeAbajo();
     }else if(inputCapipepo.checked){
         spanJugadorTipo.innerHTML = capipepo.tipo;
         spanJugadorElemento.innerHTML = capipepo.elemento;
@@ -422,8 +421,13 @@ function pintarPersonaje(){
         );
 };
 
-function moverHipodoge(){
+function moverHipodogeDerecha(){
     hipodoge.x = hipodoge.x + 5;
+    pintarPersonaje();
+};
+
+function moverHipodogeAbajo(){
+    hipodoge.y = hipodoge.y +5;
     pintarPersonaje();
 };
 
