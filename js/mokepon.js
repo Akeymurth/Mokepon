@@ -34,6 +34,7 @@ let indexAtaqueJugador
 let indexAtaqueEnemigo
 
 let lienzo = mapa.getContext('2d');
+let intervalo
 
 class Mokepon {
     constructor(tipo, elemento, nombre, foto, vida){
@@ -49,6 +50,8 @@ class Mokepon {
         this.alto = 80;
         this.mapaFoto = new Image();
         this.mapaFoto.src = foto;
+        this.velocidadx = 0;
+        this.velocidady = 0;
     }
 
 };
@@ -154,11 +157,10 @@ function seleccionarMascotaJugador () {
         spanMascotaJugador.innerHTML= inputHipodoge.id;
         mascotaJugador = inputHipodoge.id;
         sectionVerMapa.style.display = 'flex';
+        intervalo = setInterval(pintarPersonaje, 50);
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
-        moverHipodogeDerecha();
-        moverHipodogeAbajo();
     }else if(inputCapipepo.checked){
         spanJugadorTipo.innerHTML = capipepo.tipo;
         spanJugadorElemento.innerHTML = capipepo.elemento;
@@ -411,6 +413,8 @@ function reiniciarJuego(){
 };
 
 function pintarPersonaje(){
+    hipodoge.x = hipodoge.x + hipodoge.velocidadx;
+    hipodoge.y = hipodoge.y + hipodoge.velocidady;
     lienzo.clearRect(0, 0, mapa.width, mapa.height);
     lienzo.drawImage(
         hipodoge.mapaFoto,
@@ -421,15 +425,27 @@ function pintarPersonaje(){
         );
 };
 
-function moverHipodogeDerecha(){
-    hipodoge.x = hipodoge.x + 5;
-    pintarPersonaje();
+function moverDerecha(){
+    hipodoge.velocidadx = 5;
 };
 
-function moverHipodogeAbajo(){
-    hipodoge.y = hipodoge.y +5;
-    pintarPersonaje();
+function moverAbajo(){
+    hipodoge.velocidady = 5;
 };
+
+function moverIzquierda(){
+    hipodoge.velocidadx = -5;
+};
+
+function moverArriba(){
+    hipodoge.velocidady = -5;
+};
+
+function detenerMovimiento(){
+    hipodoge.velocidadx = 0;
+    hipodoge.velocidady = 0;
+};
+
 
 function aleatorio(min, max){
     return Math.floor(Math.random() *(max - min + 1)+min)
