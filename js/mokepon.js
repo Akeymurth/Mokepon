@@ -157,7 +157,7 @@ function seleccionarMascotaJugador () {
         spanMascotaJugador.innerHTML= inputHipodoge.id;
         mascotaJugador = inputHipodoge.id;
         sectionVerMapa.style.display = 'flex';
-        intervalo = setInterval(pintarPersonaje, 50);
+        iniciarMapa();
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
@@ -446,6 +446,30 @@ function detenerMovimiento(){
     hipodoge.velocidady = 0;
 };
 
+function sePresionoUnaTecla(event){
+    /* console.log(event.key); */
+    switch(event.key){
+        case 'ArrowUp':
+            moverArriba()
+            break
+            case 'ArrowDown':
+                moverAbajo()
+                break
+            case 'ArrowLeft':
+                moverIzquierda()
+                break
+            case 'ArrowRight':
+                moverDerecha()
+                break
+            default:
+                break
+    };
+};
+function iniciarMapa(){
+    intervalo = setInterval(pintarPersonaje, 50);
+    window.addEventListener('keydown', sePresionoUnaTecla);
+    window.addEventListener('keyup', detenerMovimiento);
+}
 
 function aleatorio(min, max){
     return Math.floor(Math.random() *(max - min + 1)+min)
