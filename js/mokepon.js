@@ -35,6 +35,8 @@ let indexAtaqueEnemigo
 
 let lienzo = mapa.getContext('2d');
 let intervalo
+let mapBackground = new Image();
+mapBackground.src = './Imagenes/mokemap.png';
 
 class Mokepon {
     constructor(tipo, elemento, nombre, foto, vida){
@@ -412,10 +414,17 @@ function reiniciarJuego(){
     location.reload();
 };
 
-function pintarPersonaje(){
+function pintarCanvas(){
     hipodoge.x = hipodoge.x + hipodoge.velocidadx;
     hipodoge.y = hipodoge.y + hipodoge.velocidady;
     lienzo.clearRect(0, 0, mapa.width, mapa.height);
+    lienzo.drawImage(
+        mapBackground,
+        0, 
+        0, 
+        mapa.width, 
+        mapa.height
+        );
     lienzo.drawImage(
         hipodoge.mapaFoto,
         hipodoge.x, /* eje x en canvas */
@@ -465,8 +474,11 @@ function sePresionoUnaTecla(event){
                 break
     };
 };
+
 function iniciarMapa(){
-    intervalo = setInterval(pintarPersonaje, 50);
+    mapa.width = 600;
+    mapa.height = 400;
+    intervalo = setInterval(pintarCanvas, 50);
     window.addEventListener('keydown', sePresionoUnaTecla);
     window.addEventListener('keyup', detenerMovimiento);
 }
