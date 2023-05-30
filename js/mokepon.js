@@ -22,6 +22,7 @@ let inputCapipepo
 let inputRatigueya
 
 let mascotaJugador
+let mascotaJugadorObjeto
 let ataquesDeMokepones
 let ataqueMokeponEnemigo
 
@@ -159,7 +160,6 @@ function seleccionarMascotaJugador () {
         spanMascotaJugador.innerHTML= inputHipodoge.id;
         mascotaJugador = inputHipodoge.id;
         sectionVerMapa.style.display = 'flex';
-        iniciarMapa();
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
         seleccionarMascotaEnemigo();
@@ -221,7 +221,8 @@ function seleccionarMascotaJugador () {
     }else{
         alert('!Debes seleccionar una mascota¡');
     };
-    
+
+    iniciarMapa();
 };
 
 function extraerAtaques(mascotaJugador){
@@ -415,8 +416,8 @@ function reiniciarJuego(){
 };
 
 function pintarCanvas(){
-    hipodoge.x = hipodoge.x + hipodoge.velocidadx;
-    hipodoge.y = hipodoge.y + hipodoge.velocidady;
+    mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadx;
+    mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidady;
     lienzo.clearRect(0, 0, mapa.width, mapa.height);
     lienzo.drawImage(
         mapBackground,
@@ -426,33 +427,33 @@ function pintarCanvas(){
         mapa.height
         );
     lienzo.drawImage(
-        hipodoge.mapaFoto,
-        hipodoge.x, /* eje x en canvas */
-        hipodoge.y, /* eje y en canvas */
-        hipodoge.ancho, /* tamaño de la imagen */
-        hipodoge.alto   /* tamaño de la imagen */
+        mascotaJugadorObjeto.mapaFoto,
+        mascotaJugadorObjeto.x, /* eje x en canvas */
+        mascotaJugadorObjeto.y, /* eje y en canvas */
+        mascotaJugadorObjeto.ancho, /* tamaño de la imagen */
+        mascotaJugadorObjeto.alto   /* tamaño de la imagen */
         );
 };
 
 function moverDerecha(){
-    hipodoge.velocidadx = 5;
+    mascotaJugadorObjeto.velocidadx = 5;
 };
 
 function moverAbajo(){
-    hipodoge.velocidady = 5;
+    mascotaJugadorObjeto.velocidady = 5;
 };
 
 function moverIzquierda(){
-    hipodoge.velocidadx = -5;
+    mascotaJugadorObjeto.velocidadx = -5;
 };
 
 function moverArriba(){
-    hipodoge.velocidady = -5;
+    mascotaJugadorObjeto.velocidady = -5;
 };
 
 function detenerMovimiento(){
-    hipodoge.velocidadx = 0;
-    hipodoge.velocidady = 0;
+    mascotaJugadorObjeto.velocidadx = 0;
+    mascotaJugadorObjeto.velocidady = 0;
 };
 
 function sePresionoUnaTecla(event){
@@ -478,10 +479,19 @@ function sePresionoUnaTecla(event){
 function iniciarMapa(){
     mapa.width = 600;
     mapa.height = 400;
+    mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador);
     intervalo = setInterval(pintarCanvas, 50);
     window.addEventListener('keydown', sePresionoUnaTecla);
     window.addEventListener('keyup', detenerMovimiento);
 }
+
+function obtenerObjetoMascota(){
+    for(let i=0; i<mokepones.length; i++){
+        if (mascotaJugador === mokepones[i].nombre){
+            return mokepones[i]
+        };
+    };
+};
 
 function aleatorio(min, max){
     return Math.floor(Math.random() *(max - min + 1)+min)
