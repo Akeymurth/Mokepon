@@ -40,23 +40,32 @@ let mapBackground = new Image();
 mapBackground.src = './Imagenes/mokemap.png';
 
 class Mokepon {
-    constructor(tipo, elemento, nombre, foto, vida){
+    constructor(tipo, elemento, nombre, foto, vida, x = 10, y = 10) {
         this.tipo = tipo;
         this.elemento = elemento;
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
-        this.x = 20;
-        this.y = 30;
-        this.ancho = 80;
-        this.alto = 80;
+        this.x = x;
+        this.y = y;
+        this.ancho = 60;
+        this.alto = 60;
         this.mapaFoto = new Image();
         this.mapaFoto.src = foto;
         this.velocidadx = 0;
         this.velocidady = 0;
     }
 
+    pintarMokepon(){
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x, /* eje x en canvas */
+            this.y, /* eje y en canvas */
+            this.ancho, /* tamaño de la imagen */
+            this.alto   /* tamaño de la imagen */
+            );
+    };
 };
 
 let hipodoge = new Mokepon('Agua', '💧💧💧🔥🌱', 'Hipodoge', './Imagenes/hipodoge2.png', 5);
@@ -65,6 +74,13 @@ let ratigueya = new Mokepon('Fuego', '🔥🔥🔥💧🌱', 'Ratigueya', './Ima
 let ratimon = new Mokepon('Planta', '🌱🌱🌱💧💧', 'Ratimon', './Imagenes/ratymon2.png', 5);
 let dogodoge = new Mokepon('Fuego', '🔥🔥🔥💧💧', 'Dogodoge', './Imagenes/dogodoge.png', 5);
 let fokamon = new Mokepon('Agua', '💧💧💧🌱🌱', 'Fokamon', './Imagenes/fokamon.png', 5);
+
+let hipodogeEnemigo = new Mokepon('Agua', '💧💧💧🔥🌱', 'Hipodoge', './Imagenes/hipodoge2.png', 5, 150, 300);
+let capipepoEnemigo = new Mokepon('Planta', '🌱🌱🌱💧🔥', 'Capipepo', './Imagenes/capi2.png', 5, 550, 50);
+let ratigueyaEnemigo = new Mokepon('Fuego', '🔥🔥🔥💧🌱', 'Ratigueya', './Imagenes/rati2.png', 5, 100, 75);
+let ratimonEnemigo = new Mokepon('Planta', '🌱🌱🌱💧💧', 'Ratimon', './Imagenes/ratymon2.png', 5, 380, 240);
+let dogodogeEnemigo = new Mokepon('Fuego', '🔥🔥🔥💧💧', 'Dogodoge', './Imagenes/dogodoge.png', 5, 550, 300);
+let fokamonEnemigo = new Mokepon('Agua', '💧💧💧🌱🌱', 'Fokamon', './Imagenes/fokamon.png', 5, 75, 250);
 
 hipodoge.ataques.push(
     { nombre: 'Agua 💧', id: 'boton-agua'},
@@ -426,13 +442,13 @@ function pintarCanvas(){
         mapa.width, 
         mapa.height
         );
-    lienzo.drawImage(
-        mascotaJugadorObjeto.mapaFoto,
-        mascotaJugadorObjeto.x, /* eje x en canvas */
-        mascotaJugadorObjeto.y, /* eje y en canvas */
-        mascotaJugadorObjeto.ancho, /* tamaño de la imagen */
-        mascotaJugadorObjeto.alto   /* tamaño de la imagen */
-        );
+    mascotaJugadorObjeto.pintarMokepon();
+    hipodogeEnemigo.pintarMokepon();
+    capipepoEnemigo.pintarMokepon();
+    ratigueyaEnemigo.pintarMokepon();
+    ratimonEnemigo.pintarMokepon();
+    dogodogeEnemigo.pintarMokepon();
+    fokamonEnemigo.pintarMokepon();
 };
 
 function moverDerecha(){
