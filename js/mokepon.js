@@ -153,6 +153,7 @@ mokepones.forEach((mokepon) =>{
 
 });
 
+const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
 const sectionSeleccionarAtaque = document.getElementById('seleccinar-ataque');
 sectionSeleccionarAtaque.style.display = 'none';
 const sectionReiniciar = document.getElementById('reiniciar');
@@ -178,7 +179,7 @@ function seleccionarMascotaJugador () {
         sectionVerMapa.style.display = 'flex';
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
-        seleccionarMascotaEnemigo();
+        /* seleccionarMascotaEnemigo(); */
     }else if(inputCapipepo.checked){
         spanJugadorTipo.innerHTML = capipepo.tipo;
         spanJugadorElemento.innerHTML = capipepo.elemento;
@@ -189,7 +190,7 @@ function seleccionarMascotaJugador () {
         sectionVerMapa.style.display = 'flex';
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
-        seleccionarMascotaEnemigo();
+        /* seleccionarMascotaEnemigo(); */
     }else if(inputRatigueya.checked){
         spanJugadorTipo.innerHTML = ratigueya.tipo;
         spanJugadorElemento.innerHTML = ratigueya.elemento;
@@ -200,7 +201,7 @@ function seleccionarMascotaJugador () {
         sectionVerMapa.style.display = 'flex';
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
-        seleccionarMascotaEnemigo();
+        /* seleccionarMascotaEnemigo(); */
     }else if(inputRatimon.checked){
         spanJugadorTipo.innerHTML = ratimon.tipo;
         spanJugadorElemento.innerHTML = ratimon.elemento;
@@ -211,7 +212,7 @@ function seleccionarMascotaJugador () {
         sectionVerMapa.style.display = 'flex';
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
-        seleccionarMascotaEnemigo();
+        /* seleccionarMascotaEnemigo(); */
     }else if(inputDogodoge.checked){
         spanJugadorTipo.innerHTML = dogodoge.tipo;
         spanJugadorElemento.innerHTML = dogodoge.elemento;
@@ -222,7 +223,7 @@ function seleccionarMascotaJugador () {
         sectionVerMapa.style.display = 'flex';
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
-        seleccionarMascotaEnemigo();
+        /* seleccionarMascotaEnemigo(); */
     }else if(inputFokamon.checked){
         spanJugadorTipo.innerHTML = fokamon.tipo;
         spanJugadorElemento.innerHTML = fokamon.elemento;
@@ -233,7 +234,7 @@ function seleccionarMascotaJugador () {
         sectionVerMapa.style.display = 'flex';
         /* sectionSeleccionarAtaque.style.display = 'flex'; */
         extraerAtaques(mascotaJugador);
-        seleccionarMascotaEnemigo();
+        /* seleccionarMascotaEnemigo(); */
     }else{
         alert('!Debes seleccionar una mascota¡');
     };
@@ -295,8 +296,7 @@ function secuenciaAtaque(){
     });
 };
 
-function seleccionarMascotaEnemigo (){
-    const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota');
+/* function seleccionarMascotaEnemigo (){
     let mascotaAleatorio = aleatorio(0, mokepones.length -1);
     const spanMascotaEnemigo = document.getElementById ('mascota-enemigo');
     spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatorio].nombre;
@@ -316,6 +316,35 @@ function seleccionarMascotaEnemigo (){
     
     mokepones.forEach((moke) =>{
         if(moke.nombre === mokepones[mascotaAleatorio].nombre){
+            console.log(moke.nombre);
+            ataquesPC = moke.ataques
+        }
+    });
+
+    console.log(ataquesPC);
+    secuenciaAtaque();
+}; */
+
+function seleccionarMascotaEnemigo (enemigo){
+    
+    const spanMascotaEnemigo = document.getElementById ('mascota-enemigo');
+    spanMascotaEnemigo.innerHTML = enemigo.nombre;
+    
+    const spanEnemigoTipo = document.getElementById ('enemigoTipo');
+    spanEnemigoTipo.innerHTML = enemigo.tipo;
+
+    const spanEnemigoElemento = document.getElementById ('enemigoElemento');
+    spanEnemigoElemento.innerHTML = enemigo.elemento;
+    
+    sectionSeleccionarMascota.style.display = 'none';
+    ataqueMokeponEnemigo = enemigo.ataques;
+    
+    let image = document.createElement('img');
+    image.src = enemigo.foto;
+    document.querySelector('.foto-enemigo').appendChild(image); 
+    
+    mokepones.forEach((moke) =>{
+        if(moke.nombre === enemigo.nombre){
             console.log(moke.nombre);
             ataquesPC = moke.ataques
         }
@@ -507,6 +536,7 @@ function iniciarMapa(){
     intervalo = setInterval(pintarCanvas, 50);
     window.addEventListener('keydown', sePresionoUnaTecla);
     window.addEventListener('keyup', detenerMovimiento);
+    sectionSeleccionarMascota.style.display = 'none';
 }
 
 function obtenerObjetoMascota(){
@@ -538,7 +568,11 @@ function revisarColision(enemigo){
     }
 
     detenerMovimiento();
-    alert("hay colision " + enemigo.nombre );
+    clearInterval(intervalo);
+    seleccionarMascotaEnemigo(enemigo);
+    sectionSeleccionarAtaque.style.display = 'flex';
+    sectionVerMapa.style.display = 'none';
+    
 };
 
 function aleatorio(min, max){
