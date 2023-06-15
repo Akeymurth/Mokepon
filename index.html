@@ -22,10 +22,14 @@
     <section id="verMapa">
         <h1 class="titulo">Recorre el mapa con tu Mascota</h1>
         <canvas id="mapa"></canvas>
-        <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">↑</button>
-        <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">←</button>
-        <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">↓</button>
-        <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">→</button>
+        <div class="botonArriba">
+            <button onmouseup="detenerMovimiento()" onmousedown="moverArriba()">↑</button>
+        </div>
+        <div clas="tresBotones">
+            <button onmouseup="detenerMovimiento()" onmousedown="moverIzquierda()">←</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverAbajo()">↓</button>
+            <button onmouseup="detenerMovimiento()" onmousedown="moverDerecha()">→</button>
+        </div>
     </section>
 
     <section id="seleccinar-ataque">

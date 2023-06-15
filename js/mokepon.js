@@ -237,6 +237,7 @@ function seleccionarMascotaJugador () {
         /* seleccionarMascotaEnemigo(); */
     }else{
         alert('!Debes seleccionar una mascota¡');
+        return;
     };
 
     iniciarMapa();
