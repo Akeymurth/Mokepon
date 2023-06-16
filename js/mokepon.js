@@ -39,18 +39,30 @@ let intervalo
 let mapBackground = new Image();
 mapBackground.src = './Imagenes/mokemap.png';
 
+let alturaQueBuscamos
+let anchoDelMapa = window.innerWidth - 20;
+
+const maximoAnchoDelMapa = 625;
+if(anchoDelMapa > maximoAnchoDelMapa){
+    anchoDelMapa = maximoAnchoDelMapa -20;
+}
+
+alturaQueBuscamos = anchoDelMapa * 400 / 600;
+mapa.width = anchoDelMapa;
+mapa.height = alturaQueBuscamos;
+
 class Mokepon {
-    constructor(tipo, elemento, nombre, foto, vida, x = 10, y = 10) {
+    constructor(tipo, elemento, nombre, foto, vida) {
         this.tipo = tipo;
         this.elemento = elemento;
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = [];
-        this.x = x;
-        this.y = y;
         this.ancho = 60;
         this.alto = 60;
+        this.x = aleatorio (0, mapa.width - this.ancho);
+        this.y = aleatorio (0, mapa.height - this.alto);
         this.mapaFoto = new Image();
         this.mapaFoto.src = foto;
         this.velocidadx = 0;
@@ -75,12 +87,12 @@ let ratimon = new Mokepon('Planta', '🌱🌱🌱💧💧', 'Ratimon', './Imagen
 let dogodoge = new Mokepon('Fuego', '🔥🔥🔥💧💧', 'Dogodoge', './Imagenes/dogodoge.png', 5);
 let fokamon = new Mokepon('Agua', '💧💧💧🌱🌱', 'Fokamon', './Imagenes/fokamon.png', 5);
 
-let hipodogeEnemigo = new Mokepon('Agua', '💧💧💧🔥🌱', 'Hipodoge', './Imagenes/hipodoge2.png', 5, 150, 300);
-let capipepoEnemigo = new Mokepon('Planta', '🌱🌱🌱💧🔥', 'Capipepo', './Imagenes/capi2.png', 5, 550, 50);
-let ratigueyaEnemigo = new Mokepon('Fuego', '🔥🔥🔥💧🌱', 'Ratigueya', './Imagenes/rati2.png', 5, 100, 75);
-let ratimonEnemigo = new Mokepon('Planta', '🌱🌱🌱💧💧', 'Ratimon', './Imagenes/ratymon2.png', 5, 380, 240);
-let dogodogeEnemigo = new Mokepon('Fuego', '🔥🔥🔥💧💧', 'Dogodoge', './Imagenes/dogodoge.png', 5, 550, 300);
-let fokamonEnemigo = new Mokepon('Agua', '💧💧💧🌱🌱', 'Fokamon', './Imagenes/fokamon.png', 5, 75, 250);
+let hipodogeEnemigo = new Mokepon('Agua', '💧💧💧🔥🌱', 'Hipodoge', './Imagenes/hipodoge2.png', 5);
+let capipepoEnemigo = new Mokepon('Planta', '🌱🌱🌱💧🔥', 'Capipepo', './Imagenes/capi2.png', 5);
+let ratigueyaEnemigo = new Mokepon('Fuego', '🔥🔥🔥💧🌱', 'Ratigueya', './Imagenes/rati2.png', 5);
+let ratimonEnemigo = new Mokepon('Planta', '🌱🌱🌱💧💧', 'Ratimon', './Imagenes/ratymon2.png', 5);
+let dogodogeEnemigo = new Mokepon('Fuego', '🔥🔥🔥💧💧', 'Dogodoge', './Imagenes/dogodoge.png', 5);
+let fokamonEnemigo = new Mokepon('Agua', '💧💧💧🌱🌱', 'Fokamon', './Imagenes/fokamon.png', 5);
 
 hipodoge.ataques.push(
     { nombre: 'Agua 💧', id: 'boton-agua'},
@@ -531,8 +543,8 @@ function sePresionoUnaTecla(event){
 };
 
 function iniciarMapa(){
-    mapa.width = 600;
-    mapa.height = 400;
+    /* mapa.width = 600;
+    mapa.height = 400; */
     mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador);
     intervalo = setInterval(pintarCanvas, 50);
     window.addEventListener('keydown', sePresionoUnaTecla);
