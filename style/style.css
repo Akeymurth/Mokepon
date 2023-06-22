@@ -101,6 +101,19 @@ input:checked + label {
 	justify-content: center;
 }
 
+#verMapa button{
+	width: 125px;
+	height: 35px;
+	margin: 15px 0px 0px 0px;
+	background-color:  #1F8A70;
+	border-radius: 10px;
+	font-family: 'Press Start 2P', cursive;
+	border-color: transparent;
+	font-size: 20px;
+	cursor: pointer;
+	color: white;
+}
+
 #mapa{
 	border: 2px solid white;
 }
@@ -275,6 +288,14 @@ input:checked + label {
 	#boton-mascota{
 		width: 250px;
 		height: 45px;
+	}
+}
+
+@media (max-width: 422px) {
+	#verMapa div{
+		display: flex;
+		align-items: center;
+		flex-direction: column;
 	}
 }
 
