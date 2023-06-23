@@ -469,9 +469,23 @@ function crearMensajeFinal(resultadoFinal){
 const botonReiniciar = document.getElementById ('boton-reiniciar');
     botonReiniciar.addEventListener('click', reiniciarJuego);
 
+unirseAlJuego();
+
 function reiniciarJuego(){
     location.reload();
 };
+
+function unirseAlJuego(){
+    fetch('http://localhost:8080/unirse')
+        .then(function(res){
+            if(res.ok){
+                res.text()
+                    .then(function(respuesta){
+                        console.log(respuesta);
+                    })
+            }
+        })
+}
 
 function pintarCanvas(){
     mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadx;
