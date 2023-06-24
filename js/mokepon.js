@@ -7,6 +7,7 @@ const sectionVerMapa = document.getElementById('verMapa');
 const mapa = document.getElementById('mapa');
 sectionVerMapa.style.display = 'none';
 
+let jugadorId = null;
 let mokepones = [];
 let opcionDeMokepones
 let ataqueJugador = [];
@@ -252,8 +253,21 @@ function seleccionarMascotaJugador () {
         return;
     };
 
+    seleccionarMokepon(mascotaJugador);    
     iniciarMapa();
 };
+
+function seleccionarMokepon(mascotaJugador){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json" 
+        },
+        body: JSON.stringify({
+            mokepon: mascotaJugador
+        })
+    })
+}
 
 function extraerAtaques(mascotaJugador){
     let ataques
@@ -482,6 +496,7 @@ function unirseAlJuego(){
                 res.text()
                     .then(function(respuesta){
                         console.log(respuesta);
+                        jugadorId = respuesta;
                     })
             }
         })
