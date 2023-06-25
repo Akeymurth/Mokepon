@@ -520,6 +520,9 @@ function pintarCanvas(){
     ratimonEnemigo.pintarMokepon();
     dogodogeEnemigo.pintarMokepon();
     fokamonEnemigo.pintarMokepon();
+
+    enviarPosocion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y);
+
     if(mascotaJugadorObjeto.velocidadx !== 0 || mascotaJugadorObjeto.velocidady !== 0){
         revisarColision(hipodogeEnemigo);
         revisarColision(ratigueyaEnemigo);
@@ -529,6 +532,27 @@ function pintarCanvas(){
         revisarColision(fokamonEnemigo);
     };
 };
+
+function enviarPosocion (x, y){
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            x,
+            y
+        })
+    })
+    .then(function(res){
+        if(res.ok){
+            res.json()
+                .then(function({enemigos}){
+                    console.log(enemigos);
+                })
+        }
+    })
+}
 
 function moverDerecha(){
     mascotaJugadorObjeto.velocidadx = 5;
